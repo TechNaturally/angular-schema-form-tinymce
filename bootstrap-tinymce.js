@@ -1,4 +1,4 @@
-angular.module("schemaForm").run(["$templateCache", function($templateCache) {$templateCache.put("directives/decorators/bootstrap/tinymce/tinymce.html","<div class=\"form-group\" ng-class=\"{\'has-error\': hasError()}\">\n  <label class=\"control-label\" ng-show=\"showTitle()\">{{form.title}}</label>\n  <textarea\n    tx-tinymce=\"form.tinymceOptions\"\n    ng-model=\"$$value$$\"\n    style=\"background-color: white\"\n    schema-validate=\"form\"\n  ></textarea>\n  <span class=\"help-block\">{{ (hasError() && errorMessage(schemaError())) || form.description}}</span>\n</div>\n");}]);
+angular.module("schemaForm").run(["$templateCache", function($templateCache) {$templateCache.put("directives/decorators/bootstrap/tinymce/tinymce.html","<div class=\"form-group {{form.htmlClass}}\" ng-class=\"{\'has-error\': hasError()}\">\n  <label class=\"control-label {{form.labelHtmlClass}}\" ng-show=\"showTitle()\" for=\"{{fieldId(true)}}\">{{form.title}}</label>\n  <textarea\n    tx-tinymce=\"form.tinymceOptions\"\n    ng-model=\"$$value$$\"\n    style=\"background-color: white\"\n    schema-validate=\"form\"\n    id=\"{{fieldId(true)}}\"\n    name=\"{{fieldId()}}\"\n  ></textarea>\n  <span class=\"help-block\">{{ (hasError() && errorMessage(schemaError())) || form.description}}</span>\n</div>\n");}]);
 angular.module('schemaForm-tinymce', ['schemaForm', 'tx-tinymce']).config(
 ['schemaFormProvider', 'schemaFormDecoratorsProvider', 'sfPathProvider',
   function(schemaFormProvider,  schemaFormDecoratorsProvider, sfPathProvider) {
@@ -15,7 +15,7 @@ angular.module('schemaForm-tinymce', ['schemaForm', 'tx-tinymce']).config(
 
     schemaFormProvider.defaults.string.unshift(wysiwyg);
 
-  //Add to the bootstrap directive
+    //Add to the bootstrap directive
     schemaFormDecoratorsProvider.addMapping('bootstrapDecorator', 'wysiwyg',
     'directives/decorators/bootstrap/tinymce/tinymce.html');
     schemaFormDecoratorsProvider.createDirective('wysiwyg',
