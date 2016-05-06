@@ -14,7 +14,7 @@ angular.module('schemaForm-tinymce', ['schemaForm', 'tx-tinymce']).config(
 
     schemaFormProvider.defaults.string.unshift(wysiwyg);
 
-  //Add to the bootstrap directive
+    //Add to the bootstrap directive
     schemaFormDecoratorsProvider.addMapping('bootstrapDecorator', 'wysiwyg',
     'directives/decorators/bootstrap/tinymce/tinymce.html');
     schemaFormDecoratorsProvider.createDirective('wysiwyg',
